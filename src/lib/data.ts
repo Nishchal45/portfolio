@@ -2,13 +2,13 @@
 // All personal info, projects, services, testimonials, FAQ in one place.
 
 export const profile = {
-  name: 'Nishchal Patel',
+  name: 'Nishchal Vekariya',
   brandMark: 'NP',
   title: 'Software Engineer & AI/ML Specialist',
-  heroHeading: 'Nishchal Patel',
+  heroHeading: 'Nishchal Vekariya',
   heroSubtitle: 'Software Engineer & AI/ML Specialist',
   heroTagline:
-    'I help startups and teams build high-performance systems that scale — from real-time analytics platforms to AI-powered applications. Clean architecture, fast execution, and measurable results.',
+    'Software Development Engineer with 2+ years of experience building scalable full-stack applications, AI/ML-powered systems, and production-grade APIs. Seeking full-time SDE roles where I can ship high-impact products from day one.',
   location: 'Dallas, USA',
   email: 'nishchalvekariya0@gmail.com',
   phone: '',
@@ -20,10 +20,10 @@ export const profile = {
 };
 
 export const stats = [
-  { value: 2, suffix: '+', label: 'Years industry experience' },
-  { value: 10, suffix: '+', label: 'Projects completed' },
-  { value: 100, suffix: '%', label: 'Client satisfaction rate' },
-  { value: 0, suffix: '24/7', label: 'Support & maintenance' },
+  { value: 2, suffix: '+', label: 'YEARS EXPERIENCE' },
+  { value: 10, suffix: '+', label: 'PROJECTS SHIPPED' },
+  { value: 50, suffix: 'K+', label: 'API REQUESTS / DAY' },
+  { value: 10, suffix: 'K+', label: 'USERS SERVED' },
 ];
 
 export const services = [
@@ -352,23 +352,23 @@ export const faqItems = [
 
 export const experience = [
   {
-    role: 'Graduate Research & Projects',
-    org: 'University of Texas at Dallas',
-    period: '2024 – 2025',
+    role: 'Software Developer',
+    org: 'MD Tech',
+    period: '2023 – 2024',
     bullets: [
-      'Implemented neural classifiers and gradient checks on CIFAR-10.',
-      'Built RL prototypes for trading strategies (DQN/PPO).',
-      'Designed analytics SQL views for GlobalRides project.',
+      'Built LLM-powered features using GPT-4 and RAG pipelines with Python/FastAPI.',
+      'Developed production AI systems handling real financial data.',
+      'Designed and deployed scalable APIs and microservices.',
     ],
   },
   {
-    role: 'Freelance Engineer & Builder',
-    org: 'Self-initiated',
-    period: '2023 – Present',
+    role: 'Software Developer',
+    org: 'MagicallySoft',
+    period: '2022 – 2023',
     bullets: [
-      'Shipped 10+ apps, dashboards, and automations end-to-end.',
-      'Full deployments with logging, metrics, and uptime checks.',
-      'Worked with startups on AI integrations and backend systems.',
+      'Built a B2B employee management platform serving 10,000+ monthly active users.',
+      'Engineered backend APIs handling 50,000+ requests daily.',
+      'Full-stack development with end-to-end feature delivery.',
     ],
   },
 ];
@@ -378,5 +378,10 @@ export const education = [
     degree: 'M.S. in Computer Engineering',
     school: 'University of Texas at Dallas',
     period: '2024 – 2025',
+  },
+  {
+    degree: 'B.Tech in Computer Science',
+    school: 'Institute of Technology, Nirma University',
+    period: '2019 – 2023',
   },
 ];

@@ -22,8 +22,8 @@ export default function Footer() {
         >
           {/* Top — CTA */}
           <motion.div variants={fadeUp} custom={0} className="mb-16 text-center">
-            <p className="text-h5 mb-2 text-[var(--color-text-muted)]">Let&apos;s connect</p>
-            <h2 className="text-h1 mb-6 text-white">Start a project</h2>
+            <p className="text-h5 mb-2 text-[var(--color-text-muted)]">Open to opportunities</p>
+            <h2 className="text-h1 mb-6 text-white">Let&apos;s work together</h2>
             <Link
               href="/contact"
               className="inline-flex items-center gap-2 rounded-[var(--radius-pill)] bg-[var(--color-accent)] px-8 py-3.5 text-sm font-semibold text-white transition-all duration-200 hover:bg-[var(--color-accent-hover)] hover:scale-[1.02]"

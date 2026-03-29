@@ -17,12 +17,12 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: 'Nishchal Patel | Software Engineer & AI/ML Specialist',
+  title: 'Nishchal Vekariya | Software Engineer & AI/ML Specialist',
   description:
-    'Portfolio of Nishchal Patel — building high-performance systems, AI-powered applications, and scalable full-stack products.',
-  keywords: ['software engineer', 'AI', 'ML', 'full-stack', 'portfolio', 'Nishchal Patel'],
+    'Portfolio of Nishchal Vekariya — building high-performance systems, AI-powered applications, and scalable full-stack products.',
+  keywords: ['software engineer', 'AI', 'ML', 'full-stack', 'portfolio', 'Nishchal Vekariya'],
   openGraph: {
-    title: 'Nishchal Patel | Software Engineer & AI/ML Specialist',
+    title: 'Nishchal Vekariya | Software Engineer & AI/ML Specialist',
     description: 'Building high-performance systems and AI-powered applications.',
     type: 'website',
   },

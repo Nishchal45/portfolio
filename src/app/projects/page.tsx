@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import FAQ from '@/components/FAQ';
+// FAQ removed
 import ProjectCard from '@/components/ProjectCard';
 import { projects } from '@/lib/data';
 import { fadeUp, stagger } from '@/lib/animations';
@@ -47,7 +47,7 @@ export default function ProjectsPage() {
           </div>
         </section>
 
-        <FAQ />
+
       </main>
       <Footer />
     </>

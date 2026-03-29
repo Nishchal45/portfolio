@@ -6,10 +6,10 @@ import { motion } from 'framer-motion';
 import { ArrowUpRight, ArrowLeft } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import FAQ from '@/components/FAQ';
+// FAQ removed
 import ProjectCard from '@/components/ProjectCard';
 import { projects } from '@/lib/data';
-import { fadeUp, slideUpScale, stagger } from '@/lib/animations';
+import { fadeUp, cardReveal, stagger } from '@/lib/animations';
 
 export default function ProjectDetailPage() {
   const params = useParams();
@@ -151,7 +151,7 @@ export default function ProjectDetailPage() {
                 className="mb-16 last:mb-0"
               >
                 {/* Section tag */}
-                <motion.div variants={slideUpScale} custom={0} className="mb-6 flex items-center gap-3">
+                <motion.div variants={cardReveal} custom={0} className="mb-6 flex items-center gap-3">
                   <span className="font-[family-name:var(--font-heading)] text-3xl font-bold text-[var(--color-border)] md:text-4xl">
                     {section.num}
                   </span>
@@ -226,7 +226,6 @@ export default function ProjectDetailPage() {
           </div>
         </section>
 
-        <FAQ />
       </main>
       <Footer />
     </>

@@ -2,204 +2,315 @@
 
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowUpRight, Send } from 'lucide-react';
+import { Mail, MapPin, Globe, Github, Linkedin, Send, ArrowUpRight } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import FAQ from '@/components/FAQ';
+// FAQ removed
 import { profile } from '@/lib/data';
-import { fadeUp, heroScale, stagger } from '@/lib/animations';
+import { fadeUp, stagger } from '@/lib/animations';
+
+const contactCards = [
+  {
+    icon: Mail,
+    label: 'Email',
+    value: profile.email,
+    href: `mailto:${profile.email}`,
+    color: '#0EA5E9',
+  },
+  {
+    icon: MapPin,
+    label: 'Location',
+    value: 'Dallas, Texas, USA (CST)',
+    href: null,
+    color: '#F43F5E',
+  },
+  {
+    icon: Globe,
+    label: 'Website',
+    value: 'nishchalvekariya.com',
+    href: '/',
+    color: '#10B981',
+  },
+];
+
+const socialLinks = [
+  {
+    icon: Linkedin,
+    label: 'LinkedIn',
+    href: profile.social.linkedin,
+    color: '#0A66C2',
+  },
+  {
+    icon: Github,
+    label: 'GitHub',
+    href: profile.social.github,
+    color: '#333333',
+  },
+];
 
 export default function ContactPage() {
   const [formState, setFormState] = useState({
-    name: '',
+    firstName: '',
+    lastName: '',
     email: '',
+    subject: '',
     message: '',
   });
   const [submitted, setSubmitted] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Open mailto with form data
-    const subject = `Portfolio Contact from ${formState.name}`;
-    const body = `Name: ${formState.name}\nEmail: ${formState.email}\n\nMessage:\n${formState.message}`;
+    const fullName = `${formState.firstName} ${formState.lastName}`.trim();
+    const subject = formState.subject || `Portfolio Contact from ${fullName}`;
+    const body = `Name: ${fullName}\nEmail: ${formState.email}\n\nMessage:\n${formState.message}`;
     window.location.href = `mailto:${profile.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     setSubmitted(true);
   };
+
+  const inputClasses =
+    'w-full rounded-xl border border-[var(--color-border)] bg-white px-4 py-3.5 text-sm outline-none transition-all duration-200 focus:border-[var(--color-accent)] focus:ring-2 focus:ring-[var(--color-accent)]/10 placeholder:text-[var(--color-text-muted)]';
 
   return (
     <>
       <Navbar />
       <main>
-        {/* Hero */}
-        <section className="pt-32 pb-8 md:pt-40 md:pb-12">
-          <div className="mx-auto max-w-[1200px] px-5 md:px-8">
-            <motion.div initial="hidden" animate="visible" variants={stagger}>
-              <motion.h1 variants={heroScale} custom={0} className="text-h1">
-                Let&apos;s work
-                <br />
-                together
-              </motion.h1>
-              <motion.p variants={heroScale} custom={1} className="text-body mt-4 max-w-lg">
-                Have a project in mind or just want to say hello? Fill out the form below
-                and I&apos;ll get back to you within 24 hours.
-              </motion.p>
-            </motion.div>
-          </div>
-        </section>
-
-        {/* Contact Form + Social */}
-        <section className="section-padding pt-0">
+        {/* Contact Section */}
+        <section className="pt-32 pb-0 md:pt-40">
           <div className="mx-auto max-w-[1200px] px-5 md:px-8">
             <motion.div
               initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
+              animate="visible"
               variants={stagger}
-              className="grid gap-12 md:grid-cols-2"
+              className="grid gap-12 lg:grid-cols-2"
             >
-              {/* Form */}
-              <motion.div variants={fadeUp} custom={0}>
-                {submitted ? (
-                  <div className="flex h-full items-center">
-                    <div>
-                      <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-green-100">
-                        <Send size={24} className="text-green-600" />
-                      </div>
-                      <h3 className="text-h3 mb-2">Message sent!</h3>
-                      <p className="text-body">
-                        Thanks for reaching out. Your email client should have opened with the
-                        message. I&apos;ll get back to you soon.
-                      </p>
-                    </div>
-                  </div>
-                ) : (
-                  <form onSubmit={handleSubmit} className="space-y-5">
-                    <div>
-                      <label
-                        htmlFor="name"
-                        className="mb-2 block font-[family-name:var(--font-heading)] text-sm font-medium"
-                      >
-                        Full Name
-                      </label>
-                      <input
-                        id="name"
-                        type="text"
-                        required
-                        placeholder="Enter your full name"
-                        value={formState.name}
-                        onChange={(e) => setFormState({ ...formState, name: e.target.value })}
-                        className="w-full rounded-[var(--radius-card)] border border-[var(--color-border)] bg-white px-4 py-3.5 text-sm outline-none transition-colors focus:border-[var(--color-text-primary)] placeholder:text-[var(--color-text-muted)]"
-                      />
-                    </div>
+              {/* Left — Contact Info */}
+              <div>
+                <motion.h1 variants={fadeUp} custom={0} className="text-h2 mb-8">
+                  Get in Touch
+                </motion.h1>
 
-                    <div>
-                      <label
-                        htmlFor="email"
-                        className="mb-2 block font-[family-name:var(--font-heading)] text-sm font-medium"
-                      >
-                        Email
-                      </label>
-                      <input
-                        id="email"
-                        type="email"
-                        required
-                        placeholder="Your email address"
-                        value={formState.email}
-                        onChange={(e) => setFormState({ ...formState, email: e.target.value })}
-                        className="w-full rounded-[var(--radius-card)] border border-[var(--color-border)] bg-white px-4 py-3.5 text-sm outline-none transition-colors focus:border-[var(--color-text-primary)] placeholder:text-[var(--color-text-muted)]"
-                      />
-                    </div>
-
-                    <div>
-                      <label
-                        htmlFor="message"
-                        className="mb-2 block font-[family-name:var(--font-heading)] text-sm font-medium"
-                      >
-                        Message
-                      </label>
-                      <textarea
-                        id="message"
-                        required
-                        rows={5}
-                        placeholder="Tell me about your project or idea!"
-                        value={formState.message}
-                        onChange={(e) => setFormState({ ...formState, message: e.target.value })}
-                        className="w-full resize-none rounded-[var(--radius-card)] border border-[var(--color-border)] bg-white px-4 py-3.5 text-sm outline-none transition-colors focus:border-[var(--color-text-primary)] placeholder:text-[var(--color-text-muted)]"
-                      />
-                    </div>
-
-                    <button
-                      type="submit"
-                      className="inline-flex items-center gap-2 rounded-[var(--radius-pill)] bg-[var(--color-accent)] px-8 py-3.5 text-sm font-semibold text-white transition-all duration-200 hover:bg-[var(--color-accent-hover)] hover:scale-[1.02]"
+                {/* Contact cards */}
+                <div className="space-y-4">
+                  {contactCards.map((card, i) => (
+                    <motion.div
+                      key={card.label}
+                      variants={fadeUp}
+                      custom={i + 1}
                     >
-                      Send Message
-                      <span className="flex h-6 w-6 items-center justify-center rounded-full bg-white/20">
-                        <ArrowUpRight size={14} />
-                      </span>
-                    </button>
-                  </form>
-                )}
-              </motion.div>
-
-              {/* Social / Contact info */}
-              <motion.div variants={fadeUp} custom={1}>
-                <div className="rounded-[var(--radius-card)] bg-[var(--color-surface-light)] p-8">
-                  <h3 className="text-h4 mb-6">Contact info</h3>
-
-                  <div className="space-y-5">
-                    <div>
-                      <p className="text-small mb-1">Email</p>
-                      <a
-                        href={`mailto:${profile.email}`}
-                        className="text-sm font-medium transition-colors hover:text-[var(--color-accent)]"
-                      >
-                        {profile.email}
-                      </a>
-                    </div>
-
-                    <div>
-                      <p className="text-small mb-1">Location</p>
-                      <p className="text-sm font-medium">{profile.location}</p>
-                    </div>
-
-                    <div>
-                      <p className="text-small mb-1">Social</p>
-                      <div className="flex flex-col gap-2">
+                      {card.href ? (
                         <a
-                          href={profile.social.github}
-                          target="_blank"
-                          rel="noreferrer"
-                          className="inline-flex items-center gap-2 text-sm font-medium transition-colors hover:text-[var(--color-accent)]"
+                          href={card.href}
+                          target={card.href.startsWith('http') ? '_blank' : undefined}
+                          rel={card.href.startsWith('http') ? 'noreferrer' : undefined}
+                          className="group flex items-center gap-4 rounded-2xl border border-[var(--color-border)] bg-white p-5 transition-all duration-200 hover:border-[var(--color-accent)]/30 hover:shadow-md"
                         >
-                          GitHub <ArrowUpRight size={14} className="text-[var(--color-text-muted)]" />
+                          <div
+                            className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl"
+                            style={{ backgroundColor: `${card.color}15` }}
+                          >
+                            <card.icon size={22} style={{ color: card.color }} />
+                          </div>
+                          <div>
+                            <p className="text-xs font-medium text-[var(--color-text-muted)]">
+                              {card.label}
+                            </p>
+                            <p className="font-[family-name:var(--font-heading)] text-sm font-semibold">
+                              {card.value}
+                            </p>
+                          </div>
                         </a>
-                        <a
-                          href={profile.social.linkedin}
-                          target="_blank"
-                          rel="noreferrer"
-                          className="inline-flex items-center gap-2 text-sm font-medium transition-colors hover:text-[var(--color-accent)]"
-                        >
-                          LinkedIn <ArrowUpRight size={14} className="text-[var(--color-text-muted)]" />
-                        </a>
-                      </div>
-                    </div>
-                  </div>
+                      ) : (
+                        <div className="flex items-center gap-4 rounded-2xl border border-[var(--color-border)] bg-white p-5">
+                          <div
+                            className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl"
+                            style={{ backgroundColor: `${card.color}15` }}
+                          >
+                            <card.icon size={22} style={{ color: card.color }} />
+                          </div>
+                          <div>
+                            <p className="text-xs font-medium text-[var(--color-text-muted)]">
+                              {card.label}
+                            </p>
+                            <p className="font-[family-name:var(--font-heading)] text-sm font-semibold">
+                              {card.value}
+                            </p>
+                          </div>
+                        </div>
+                      )}
+                    </motion.div>
+                  ))}
                 </div>
 
-                {/* Quick response note */}
-                <div className="mt-6 rounded-[var(--radius-card)] border border-[var(--color-border)] p-6">
-                  <p className="text-h5 mb-1">Quick response</p>
-                  <p className="text-small">
-                    I typically respond within 24 hours. For urgent inquiries,
-                    reach out directly on LinkedIn.
-                  </p>
+                {/* Social links */}
+                <motion.div variants={fadeUp} custom={5} className="mt-8">
+                  <h3 className="mb-4 font-[family-name:var(--font-heading)] text-sm font-semibold">
+                    Connect on Social
+                  </h3>
+                  <div className="flex gap-3">
+                    {socialLinks.map((link) => (
+                      <a
+                        key={link.label}
+                        href={link.href}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="flex h-12 w-12 items-center justify-center rounded-xl transition-all duration-200 hover:scale-110 hover:shadow-md"
+                        style={{ backgroundColor: `${link.color}15` }}
+                        title={link.label}
+                      >
+                        <link.icon size={22} style={{ color: link.color }} />
+                      </a>
+                    ))}
+                  </div>
+                </motion.div>
+              </div>
+
+              {/* Right — Form */}
+              <motion.div variants={fadeUp} custom={1}>
+                <div className="rounded-2xl border border-[var(--color-border)] bg-white p-6 md:p-8">
+                  {submitted ? (
+                    <div className="flex min-h-[400px] items-center justify-center">
+                      <div className="text-center">
+                        <motion.div
+                          initial={{ scale: 0 }}
+                          animate={{ scale: 1 }}
+                          transition={{ type: 'spring', duration: 0.5 }}
+                          className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-green-100"
+                        >
+                          <Send size={24} className="text-green-600" />
+                        </motion.div>
+                        <h3 className="text-h3 mb-2">Message sent!</h3>
+                        <p className="text-body">
+                          Your email client should have opened. I&apos;ll get back to you soon.
+                        </p>
+                      </div>
+                    </div>
+                  ) : (
+                    <>
+                      <h2 className="text-h3 mb-6">Send a Message</h2>
+
+                      <form onSubmit={handleSubmit} className="space-y-5">
+                        {/* First + Last Name row */}
+                        <div className="grid gap-4 sm:grid-cols-2">
+                          <div>
+                            <label
+                              htmlFor="firstName"
+                              className="mb-2 block font-[family-name:var(--font-heading)] text-xs font-medium text-[var(--color-text-body)]"
+                            >
+                              First Name *
+                            </label>
+                            <input
+                              id="firstName"
+                              type="text"
+                              required
+                              placeholder="John"
+                              value={formState.firstName}
+                              onChange={(e) =>
+                                setFormState({ ...formState, firstName: e.target.value })
+                              }
+                              className={inputClasses}
+                            />
+                          </div>
+                          <div>
+                            <label
+                              htmlFor="lastName"
+                              className="mb-2 block font-[family-name:var(--font-heading)] text-xs font-medium text-[var(--color-text-body)]"
+                            >
+                              Last Name *
+                            </label>
+                            <input
+                              id="lastName"
+                              type="text"
+                              required
+                              placeholder="Doe"
+                              value={formState.lastName}
+                              onChange={(e) =>
+                                setFormState({ ...formState, lastName: e.target.value })
+                              }
+                              className={inputClasses}
+                            />
+                          </div>
+                        </div>
+
+                        {/* Email */}
+                        <div>
+                          <label
+                            htmlFor="email"
+                            className="mb-2 block font-[family-name:var(--font-heading)] text-xs font-medium text-[var(--color-text-body)]"
+                          >
+                            Email *
+                          </label>
+                          <input
+                            id="email"
+                            type="email"
+                            required
+                            placeholder="john@example.com"
+                            value={formState.email}
+                            onChange={(e) =>
+                              setFormState({ ...formState, email: e.target.value })
+                            }
+                            className={inputClasses}
+                          />
+                        </div>
+
+                        {/* Subject */}
+                        <div>
+                          <label
+                            htmlFor="subject"
+                            className="mb-2 block font-[family-name:var(--font-heading)] text-xs font-medium text-[var(--color-text-body)]"
+                          >
+                            Subject *
+                          </label>
+                          <input
+                            id="subject"
+                            type="text"
+                            required
+                            placeholder="Let's discuss a project"
+                            value={formState.subject}
+                            onChange={(e) =>
+                              setFormState({ ...formState, subject: e.target.value })
+                            }
+                            className={inputClasses}
+                          />
+                        </div>
+
+                        {/* Message */}
+                        <div>
+                          <label
+                            htmlFor="message"
+                            className="mb-2 block font-[family-name:var(--font-heading)] text-xs font-medium text-[var(--color-text-body)]"
+                          >
+                            Message *
+                          </label>
+                          <textarea
+                            id="message"
+                            required
+                            rows={5}
+                            placeholder="Tell me about your project or idea..."
+                            value={formState.message}
+                            onChange={(e) =>
+                              setFormState({ ...formState, message: e.target.value })
+                            }
+                            className={`${inputClasses} resize-none`}
+                          />
+                        </div>
+
+                        {/* Submit */}
+                        <button
+                          type="submit"
+                          className="flex w-full items-center justify-center gap-2 rounded-xl bg-[var(--color-accent)] px-8 py-3.5 text-sm font-semibold text-white transition-all duration-200 hover:bg-[var(--color-accent-hover)] hover:shadow-lg hover:shadow-[var(--color-accent)]/20"
+                        >
+                          Send Message
+                          <ArrowUpRight size={16} />
+                        </button>
+                      </form>
+                    </>
+                  )}
                 </div>
               </motion.div>
             </motion.div>
           </div>
         </section>
 
-        <FAQ />
       </main>
       <Footer />
     </>
