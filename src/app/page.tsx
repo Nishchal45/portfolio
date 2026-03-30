@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import Image from 'next/image';
 import {
   ArrowUpRight, ArrowRight, GraduationCap, Briefcase, Brain,
   Code2, Cloud, Rocket, Mail, MapPin, Globe, Github, Linkedin,
@@ -44,23 +45,22 @@ function Hero() {
         </motion.div>
       </div>
 
-      {/* Decorative profile area */}
+      {/* Profile photo */}
       <motion.div
         variants={heroImage}
         initial="hidden"
         animate="visible"
         className="pointer-events-none absolute right-0 bottom-0 hidden w-[40%] lg:block"
       >
-        <div className="aspect-[3/4] w-full overflow-hidden rounded-tl-3xl bg-gradient-to-br from-[var(--color-accent)]/5 to-[var(--color-surface)]/10">
-          <div className="flex h-full items-center justify-center">
-            <div className="text-center">
-              <div className="mx-auto flex h-32 w-32 items-center justify-center rounded-full bg-[var(--color-accent)]/10">
-                <span className="font-[family-name:var(--font-heading)] text-5xl font-bold text-[var(--color-accent)]">
-                  NV
-                </span>
-              </div>
-            </div>
-          </div>
+        <div className="aspect-[3/4] w-full overflow-hidden rounded-tl-3xl">
+          <Image
+            src="/images/hero.png"
+            alt="Nishchal Vekariya"
+            width={800}
+            height={1067}
+            className="h-full w-full object-cover object-top"
+            priority
+          />
         </div>
       </motion.div>
     </section>
