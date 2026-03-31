@@ -30,7 +30,11 @@ export default function Navbar() {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? 'bg-[#1e1e1e]/95 backdrop-blur-md' : 'bg-transparent'
+        scrolled
+          ? 'bg-[#1e1e1e]/95 backdrop-blur-md'
+          : pathname === '/'
+            ? 'bg-transparent'
+            : 'bg-[#1e1e1e]'
       }`}
     >
       <div className="mx-auto flex max-w-[1200px] items-center justify-between px-5 py-4 md:px-8">

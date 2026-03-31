@@ -74,8 +74,25 @@ export default function ContactPage() {
     <>
       <Navbar />
       <main>
+        {/* Dark hero header — matches home page */}
+        <section className="bg-[var(--color-surface)] pt-32 pb-16 md:pt-40 md:pb-20">
+          <div className="mx-auto max-w-[1200px] px-5 md:px-8">
+            <motion.div initial="hidden" animate="visible" variants={stagger}>
+              <motion.h1 variants={fadeUp} custom={0} className="text-h1 text-white">
+                Let&apos;s work
+                <br />
+                <span className="text-[var(--color-accent)]">together</span>
+              </motion.h1>
+              <motion.p variants={fadeUp} custom={1} className="mt-4 max-w-lg text-base leading-relaxed text-white/60">
+                Have a project in mind or looking to hire? Fill out the form and
+                I&apos;ll get back to you within 24 hours.
+              </motion.p>
+            </motion.div>
+          </div>
+        </section>
+
         {/* Contact Section */}
-        <section className="pt-32 pb-0 md:pt-40">
+        <section className="section-padding pt-12">
           <div className="mx-auto max-w-[1200px] px-5 md:px-8">
             <motion.div
               initial="hidden"
@@ -85,9 +102,9 @@ export default function ContactPage() {
             >
               {/* Left — Contact Info */}
               <div>
-                <motion.h1 variants={fadeUp} custom={0} className="text-h2 mb-8">
-                  Get in Touch
-                </motion.h1>
+                <motion.h3 variants={fadeUp} custom={0} className="text-h3 mb-6">
+                  Contact Info
+                </motion.h3>
 
                 {/* Contact cards */}
                 <div className="space-y-4">

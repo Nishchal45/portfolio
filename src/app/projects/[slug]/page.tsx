@@ -40,29 +40,28 @@ export default function ProjectDetailPage() {
     <>
       <Navbar />
       <main>
-        {/* Hero */}
-        <section className="pt-32 pb-8 md:pt-40 md:pb-12">
+        {/* Dark hero — matches other pages */}
+        <section className="bg-[var(--color-surface)] pt-32 pb-16 md:pt-40 md:pb-20">
           <div className="mx-auto max-w-[1200px] px-5 md:px-8">
             <motion.div initial="hidden" animate="visible" variants={stagger}>
               <motion.div variants={fadeUp} custom={0}>
                 <Link
                   href="/projects"
-                  className="mb-6 inline-flex items-center gap-2 text-sm text-[var(--color-text-muted)] transition-colors hover:text-[var(--color-text-primary)]"
+                  className="mb-6 inline-flex items-center gap-2 text-sm text-white/50 transition-colors hover:text-white"
                 >
                   <ArrowLeft size={16} />
                   Back to projects
                 </Link>
               </motion.div>
 
-              <motion.h1 variants={fadeUp} custom={1} className="text-h1">
+              <motion.h1 variants={fadeUp} custom={1} className="text-h1 text-white">
                 {project.title}
               </motion.h1>
 
-              <motion.p variants={fadeUp} custom={2} className="text-body mt-4 max-w-2xl">
+              <motion.p variants={fadeUp} custom={2} className="mt-4 max-w-2xl text-base leading-relaxed text-white/60">
                 {project.description}
               </motion.p>
 
-              {/* Live Preview button */}
               <motion.div variants={fadeUp} custom={3} className="mt-6">
                 <a
                   href={project.link}

@@ -3,7 +3,6 @@
 import { motion } from 'framer-motion';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-// FAQ removed
 import ProjectCard from '@/components/ProjectCard';
 import { projects } from '@/lib/data';
 import { fadeUp, stagger } from '@/lib/animations';
@@ -13,16 +12,16 @@ export default function ProjectsPage() {
     <>
       <Navbar />
       <main>
-        {/* Hero heading */}
-        <section className="pt-32 pb-12 md:pt-40 md:pb-16">
+        {/* Dark hero — matches home page */}
+        <section className="bg-[var(--color-surface)] pt-32 pb-16 md:pt-40 md:pb-20">
           <div className="mx-auto max-w-[1200px] px-5 md:px-8">
             <motion.div initial="hidden" animate="visible" variants={stagger}>
-              <motion.h1 variants={fadeUp} custom={0} className="text-h1">
+              <motion.h1 variants={fadeUp} custom={0} className="text-h1 text-white">
                 Shaping digital
                 <br />
-                products
+                <span className="text-[var(--color-accent)]">products</span>
               </motion.h1>
-              <motion.p variants={fadeUp} custom={1} className="text-body mt-4 max-w-lg">
+              <motion.p variants={fadeUp} custom={1} className="mt-4 max-w-lg text-base leading-relaxed text-white/60">
                 A collection of projects spanning distributed systems, AI-powered tools,
                 real-time analytics, and full-stack applications.
               </motion.p>
@@ -31,12 +30,12 @@ export default function ProjectsPage() {
         </section>
 
         {/* Projects Grid */}
-        <section className="section-padding pt-0">
+        <section className="section-padding">
           <div className="mx-auto max-w-[1500px]">
             <motion.div
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true, margin: '-50px' }}
+              viewport={{ once: true, amount: 0.05 }}
               variants={stagger}
               className="grid gap-6 md:grid-cols-2"
             >
@@ -46,8 +45,6 @@ export default function ProjectsPage() {
             </motion.div>
           </div>
         </section>
-
-
       </main>
       <Footer />
     </>
