@@ -26,3 +26,4 @@ yarn-error.log*
 # turbopack
 .turbo
 .claude/
+public/images/hero-original.png

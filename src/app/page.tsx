@@ -21,22 +21,26 @@ const VP = { once: true, amount: 0.15 } as const;
 function Hero() {
   return (
     <section className="relative min-h-screen overflow-hidden bg-[var(--color-surface)]">
-      {/* Background image — full screen */}
-      <div className="absolute inset-0">
+      {/* Background base */}
+      <div className="absolute inset-0 bg-[#0a0a0a]" />
+
+      {/* Hero image — uncropped, positioned right */}
+      <div className="absolute top-0 -right-[12%] bottom-0 w-[75%]">
         <Image
           src="/images/hero.png"
           alt="Nishchal Vekariya"
           fill
-          className="object-cover object-[80%_top]"
+          sizes="75vw"
+          className="object-contain object-right-bottom"
           priority
         />
-        {/* Gradient overlays for text readability */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0a]/90 via-[#0a0a0a]/60 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a]/80 via-transparent to-[#0a0a0a]/30" />
       </div>
 
+      {/* Gradient overlay for text readability */}
+      <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0a] via-[#0a0a0a]/70 to-transparent" />
+
       {/* Content */}
-      <div className="relative flex min-h-screen flex-col justify-end pb-20 pt-24">
+      <div className="relative flex min-h-screen flex-col justify-end pb-12 pt-24">
         <div className="mx-auto w-full max-w-[1200px] px-5 md:px-8">
           <motion.div initial="hidden" animate="visible" variants={stagger}>
             <motion.div variants={heroReveal} custom={0} className="mb-4 flex flex-wrap items-center gap-4">
@@ -73,21 +77,6 @@ function Hero() {
               </Link>
             </motion.div>
 
-            {/* Quick stats inline */}
-            <motion.div variants={heroReveal} custom={4} className="mt-12 flex flex-wrap gap-8">
-              {[
-                { val: '2+', label: 'Years Exp' },
-                { val: '10+', label: 'Projects' },
-                { val: '50K+', label: 'API Reqs/Day' },
-              ].map((s) => (
-                <div key={s.label}>
-                  <div className="font-[family-name:var(--font-heading)] text-2xl font-bold text-white">
-                    {s.val}
-                  </div>
-                  <div className="text-xs text-white/40">{s.label}</div>
-                </div>
-              ))}
-            </motion.div>
           </motion.div>
         </div>
       </div>
