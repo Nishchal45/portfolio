@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import Image from 'next/image';
+// image import removed — using animated avatar
 import {
   ArrowUpRight, ArrowRight, GraduationCap, Briefcase, Brain,
   Code2, Cloud, Rocket, Mail, MapPin, Globe, Github, Linkedin,
@@ -45,22 +45,94 @@ function Hero() {
         </motion.div>
       </div>
 
-      {/* Profile photo */}
+      {/* Animated avatar */}
       <motion.div
         variants={heroImage}
         initial="hidden"
         animate="visible"
         className="pointer-events-none absolute right-0 bottom-0 hidden w-[40%] lg:block"
       >
-        <div className="aspect-[3/4] w-full overflow-hidden rounded-tl-3xl">
-          <Image
-            src="/images/hero.png"
-            alt="Nishchal Vekariya"
-            width={800}
-            height={1067}
-            className="h-full w-full object-cover object-top"
-            priority
+        <div className="relative aspect-[3/4] w-full overflow-hidden rounded-tl-3xl">
+          {/* Animated gradient background */}
+          <div className="absolute inset-0 bg-gradient-to-br from-[var(--color-surface)] via-[#1a1a2e] to-[var(--color-surface)]" />
+
+          {/* Floating orbs */}
+          <motion.div
+            animate={{ y: [-20, 20, -20], x: [-10, 10, -10] }}
+            transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
+            className="absolute top-[15%] left-[20%] h-32 w-32 rounded-full bg-[var(--color-accent)]/20 blur-2xl"
           />
+          <motion.div
+            animate={{ y: [15, -15, 15], x: [10, -10, 10] }}
+            transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
+            className="absolute bottom-[25%] right-[15%] h-40 w-40 rounded-full bg-[#6C3AED]/20 blur-2xl"
+          />
+          <motion.div
+            animate={{ y: [10, -20, 10] }}
+            transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
+            className="absolute top-[45%] left-[40%] h-24 w-24 rounded-full bg-[#0EA5E9]/15 blur-2xl"
+          />
+
+          {/* Grid lines */}
+          <div className="absolute inset-0 opacity-[0.04]" style={{
+            backgroundImage: 'linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)',
+            backgroundSize: '40px 40px',
+          }} />
+
+          {/* Avatar container */}
+          <div className="relative flex h-full flex-col items-center justify-center">
+            {/* Avatar circle */}
+            <motion.div
+              animate={{ y: [-6, 6, -6] }}
+              transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
+              className="relative"
+            >
+              {/* Outer glow ring */}
+              <motion.div
+                animate={{ rotate: 360 }}
+                transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
+                className="absolute -inset-3 rounded-full"
+                style={{
+                  background: 'conic-gradient(from 0deg, var(--color-accent), #6C3AED, #0EA5E9, #10B981, var(--color-accent))',
+                  opacity: 0.3,
+                }}
+              />
+              <div className="relative flex h-36 w-36 items-center justify-center rounded-full border-2 border-white/10 bg-[var(--color-surface)]">
+                <span className="font-[family-name:var(--font-heading)] text-5xl font-bold text-white">
+                  NV
+                </span>
+              </div>
+            </motion.div>
+
+            {/* Code snippet decoration */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1.2, duration: 0.8 }}
+              className="mt-8 rounded-xl border border-white/10 bg-white/5 px-5 py-3 font-mono text-xs text-white/50 backdrop-blur-sm"
+            >
+              <span className="text-[#0EA5E9]">const</span>{' '}
+              <span className="text-[#10B981]">engineer</span>{' '}
+              <span className="text-white/30">=</span>{' '}
+              <span className="text-[var(--color-accent)]">&quot;Nishchal&quot;</span>
+              <span className="animate-pulse text-white">|</span>
+            </motion.div>
+
+            {/* Floating tech tags */}
+            <div className="mt-6 flex flex-wrap justify-center gap-2">
+              {['AI/ML', 'Full-Stack', 'Quant'].map((tag, i) => (
+                <motion.span
+                  key={tag}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 1.5 + i * 0.2, duration: 0.5 }}
+                  className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[10px] font-medium text-white/40 backdrop-blur-sm"
+                >
+                  {tag}
+                </motion.span>
+              ))}
+            </div>
+          </div>
         </div>
       </motion.div>
     </section>
