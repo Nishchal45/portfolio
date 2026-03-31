@@ -1,5 +1,6 @@
 'use client';
 
+import { lazy, Suspense } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -8,11 +9,13 @@ import {
   Code2, Cloud, Rocket, Mail, MapPin, Globe, Github, Linkedin,
 } from 'lucide-react';
 import Navbar from '@/components/Navbar';
-import Footer from '@/components/Footer';
 import ProjectCard from '@/components/ProjectCard';
 import StatCounter from '@/components/StatCounter';
 import { profile, stats, services, projects, experience, education } from '@/lib/data';
 import { heroReveal, heroImage, fadeUp, cardReveal, stagger } from '@/lib/animations';
+
+// Lazy load Footer — below fold
+const Footer = lazy(() => import('@/components/Footer'));
 
 // ─── Shared viewport config for consistency ─────────────────────
 const VP = { once: true, amount: 0.15 } as const;
@@ -38,8 +41,8 @@ function Hero() {
         />
       </div>
 
-      {/* Gradient overlay for text readability */}
-      <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0a] via-[#0a0a0a]/70 to-transparent" />
+      {/* Gradient overlay — covers only the left 50% for text, avatar stays untouched */}
+      <div className="absolute inset-0" style={{ background: 'linear-gradient(to right, #0a0a0a 0%, #0a0a0a 30%, transparent 55%)' }} />
 
       {/* Content */}
       <div className="relative flex min-h-screen flex-col justify-end pb-12 pt-24">
@@ -663,7 +666,7 @@ export default function Home() {
         <SkillsSection />
         <ContactSection />
       </main>
-      <Footer />
+      <Suspense><Footer /></Suspense>
     </>
   );
 }
