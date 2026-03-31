@@ -32,6 +32,8 @@ function Hero() {
           fill
           sizes="75vw"
           className="object-contain object-right-bottom"
+          placeholder="blur"
+          blurDataURL="data:image/webp;base64,UklGRkAAAABXRUJQVlA4IDQAAADQAgCdASoUAA0APzmGulOvKSWisAgB4CcJZwAAe/QAAP7uH739DxB9udT8d0q/lnkOhwAA"
           priority
         />
       </div>
