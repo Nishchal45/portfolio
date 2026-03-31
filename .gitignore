@@ -27,3 +27,4 @@ yarn-error.log*
 .turbo
 .claude/
 public/images/hero-original.png
+public/images/hero.png

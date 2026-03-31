@@ -36,7 +36,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${poppins.variable} ${inter.variable}`}>
       <head>
-        <link rel="preload" href="/images/hero.png" as="image" />
+        <link rel="preload" href="/images/hero.webp" as="image" type="image/webp" />
       </head>
       <body className={inter.className}>{children}</body>
     </html>

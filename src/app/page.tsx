@@ -30,7 +30,7 @@ function Hero() {
       {/* Hero image — uncropped, positioned right */}
       <div className="absolute top-0 -right-[12%] bottom-0 w-[75%]">
         <Image
-          src="/images/hero.png"
+          src="/images/hero.webp"
           alt="Nishchal Vekariya"
           fill
           sizes="75vw"
