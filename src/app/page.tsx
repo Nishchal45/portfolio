@@ -27,7 +27,7 @@ function Hero() {
           src="/images/hero.png"
           alt="Nishchal Vekariya"
           fill
-          className="object-cover object-top"
+          className="object-cover object-[80%_top]"
           priority
         />
         {/* Gradient overlays for text readability */}
