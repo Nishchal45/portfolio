@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-// image import removed — using animated avatar
+import Image from 'next/image';
 import {
   ArrowUpRight, ArrowRight, GraduationCap, Briefcase, Brain,
   Code2, Cloud, Rocket, Mail, MapPin, Globe, Github, Linkedin,
@@ -20,121 +20,77 @@ const VP = { once: true, amount: 0.15 } as const;
 // ─── Hero ───────────────────────────────────────────────────────
 function Hero() {
   return (
-    <section className="relative flex min-h-screen flex-col justify-end overflow-hidden pb-16 pt-24">
-      <div className="absolute inset-0 bg-white" />
-
-      <div className="relative mx-auto w-full max-w-[1200px] px-5 md:px-8">
-        <motion.div initial="hidden" animate="visible" variants={stagger}>
-          <motion.div variants={heroReveal} custom={0} className="mb-4 flex flex-wrap items-center gap-4">
-            <span className="text-h5 text-[var(--color-text-body)]">Nishchal Vekariya</span>
-            <span className="h-1 w-1 rounded-full bg-[var(--color-border)]" />
-            <span className="text-h5 text-[var(--color-text-body)]">
-              Software Engineer & AI/ML Specialist
-            </span>
-          </motion.div>
-
-          <motion.h1 variants={heroReveal} custom={1} className="text-hero">
-            Nishchal
-            <br />
-            Vekariya
-          </motion.h1>
-
-          <motion.p variants={heroReveal} custom={2} className="mt-6 max-w-xl text-body">
-            {profile.heroTagline}
-          </motion.p>
-        </motion.div>
+    <section className="relative min-h-screen overflow-hidden bg-[var(--color-surface)]">
+      {/* Background image — full screen */}
+      <div className="absolute inset-0">
+        <Image
+          src="/images/hero.png"
+          alt="Nishchal Vekariya"
+          fill
+          className="object-cover object-top"
+          priority
+        />
+        {/* Gradient overlays for text readability */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0a]/90 via-[#0a0a0a]/60 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a]/80 via-transparent to-[#0a0a0a]/30" />
       </div>
 
-      {/* Animated avatar */}
-      <motion.div
-        variants={heroImage}
-        initial="hidden"
-        animate="visible"
-        className="pointer-events-none absolute right-0 bottom-0 hidden w-[40%] lg:block"
-      >
-        <div className="relative aspect-[3/4] w-full overflow-hidden rounded-tl-3xl">
-          {/* Animated gradient background */}
-          <div className="absolute inset-0 bg-gradient-to-br from-[var(--color-surface)] via-[#1a1a2e] to-[var(--color-surface)]" />
-
-          {/* Floating orbs */}
-          <motion.div
-            animate={{ y: [-20, 20, -20], x: [-10, 10, -10] }}
-            transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
-            className="absolute top-[15%] left-[20%] h-32 w-32 rounded-full bg-[var(--color-accent)]/20 blur-2xl"
-          />
-          <motion.div
-            animate={{ y: [15, -15, 15], x: [10, -10, 10] }}
-            transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
-            className="absolute bottom-[25%] right-[15%] h-40 w-40 rounded-full bg-[#6C3AED]/20 blur-2xl"
-          />
-          <motion.div
-            animate={{ y: [10, -20, 10] }}
-            transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
-            className="absolute top-[45%] left-[40%] h-24 w-24 rounded-full bg-[#0EA5E9]/15 blur-2xl"
-          />
-
-          {/* Grid lines */}
-          <div className="absolute inset-0 opacity-[0.04]" style={{
-            backgroundImage: 'linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)',
-            backgroundSize: '40px 40px',
-          }} />
-
-          {/* Avatar container */}
-          <div className="relative flex h-full flex-col items-center justify-center">
-            {/* Avatar circle */}
-            <motion.div
-              animate={{ y: [-6, 6, -6] }}
-              transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-              className="relative"
-            >
-              {/* Outer glow ring */}
-              <motion.div
-                animate={{ rotate: 360 }}
-                transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
-                className="absolute -inset-3 rounded-full"
-                style={{
-                  background: 'conic-gradient(from 0deg, var(--color-accent), #6C3AED, #0EA5E9, #10B981, var(--color-accent))',
-                  opacity: 0.3,
-                }}
-              />
-              <div className="relative flex h-36 w-36 items-center justify-center rounded-full border-2 border-white/10 bg-[var(--color-surface)]">
-                <span className="font-[family-name:var(--font-heading)] text-5xl font-bold text-white">
-                  NV
-                </span>
-              </div>
+      {/* Content */}
+      <div className="relative flex min-h-screen flex-col justify-end pb-20 pt-24">
+        <div className="mx-auto w-full max-w-[1200px] px-5 md:px-8">
+          <motion.div initial="hidden" animate="visible" variants={stagger}>
+            <motion.div variants={heroReveal} custom={0} className="mb-4 flex flex-wrap items-center gap-4">
+              <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs font-medium text-white/70 backdrop-blur-sm">
+                <span className="h-2 w-2 rounded-full bg-[#10B981]" />
+                Open to opportunities
+              </span>
             </motion.div>
 
-            {/* Code snippet decoration */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 1.2, duration: 0.8 }}
-              className="mt-8 rounded-xl border border-white/10 bg-white/5 px-5 py-3 font-mono text-xs text-white/50 backdrop-blur-sm"
-            >
-              <span className="text-[#0EA5E9]">const</span>{' '}
-              <span className="text-[#10B981]">engineer</span>{' '}
-              <span className="text-white/30">=</span>{' '}
-              <span className="text-[var(--color-accent)]">&quot;Nishchal&quot;</span>
-              <span className="animate-pulse text-white">|</span>
+            <motion.h1 variants={heroReveal} custom={1} className="text-hero text-white">
+              Nishchal
+              <br />
+              <span className="text-[var(--color-accent)]">Vekariya</span>
+            </motion.h1>
+
+            <motion.p variants={heroReveal} custom={2} className="mt-6 max-w-lg text-base leading-relaxed text-white/60 md:text-lg">
+              {profile.heroTagline}
+            </motion.p>
+
+            {/* CTA buttons */}
+            <motion.div variants={heroReveal} custom={3} className="mt-8 flex flex-wrap items-center gap-4">
+              <Link
+                href="/projects"
+                className="inline-flex items-center gap-2 rounded-[var(--radius-pill)] bg-[var(--color-accent)] px-7 py-3 text-sm font-semibold text-white transition-all duration-200 hover:bg-[var(--color-accent-hover)] hover:scale-[1.02]"
+              >
+                View Projects
+                <ArrowRight size={16} />
+              </Link>
+              <Link
+                href="#contact"
+                className="inline-flex items-center gap-2 rounded-[var(--radius-pill)] border border-white/20 bg-white/5 px-7 py-3 text-sm font-medium text-white backdrop-blur-sm transition-all duration-200 hover:bg-white/10"
+              >
+                Get in Touch
+              </Link>
             </motion.div>
 
-            {/* Floating tech tags */}
-            <div className="mt-6 flex flex-wrap justify-center gap-2">
-              {['AI/ML', 'Full-Stack', 'Quant'].map((tag, i) => (
-                <motion.span
-                  key={tag}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 1.5 + i * 0.2, duration: 0.5 }}
-                  className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[10px] font-medium text-white/40 backdrop-blur-sm"
-                >
-                  {tag}
-                </motion.span>
+            {/* Quick stats inline */}
+            <motion.div variants={heroReveal} custom={4} className="mt-12 flex flex-wrap gap-8">
+              {[
+                { val: '2+', label: 'Years Exp' },
+                { val: '10+', label: 'Projects' },
+                { val: '50K+', label: 'API Reqs/Day' },
+              ].map((s) => (
+                <div key={s.label}>
+                  <div className="font-[family-name:var(--font-heading)] text-2xl font-bold text-white">
+                    {s.val}
+                  </div>
+                  <div className="text-xs text-white/40">{s.label}</div>
+                </div>
               ))}
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </div>
-      </motion.div>
+      </div>
     </section>
   );
 }
