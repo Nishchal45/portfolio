@@ -23,29 +23,48 @@ const VP = { once: true, amount: 0.15 } as const;
 // ─── Hero ───────────────────────────────────────────────────────
 function Hero() {
   return (
-    <section className="relative min-h-screen overflow-hidden bg-[var(--color-surface)]">
-      {/* Background base */}
-      <div className="absolute inset-0 bg-[#0a0a0a]" />
-
-      {/* Hero image — uncropped, positioned right */}
-      <div className="absolute top-0 -right-[12%] bottom-0 w-[75%]">
-        <Image
-          src="/images/hero.webp"
-          alt="Nishchal Vekariya"
-          fill
-          sizes="75vw"
-          className="object-contain object-right-bottom"
-          placeholder="blur"
-          blurDataURL="data:image/webp;base64,UklGRkAAAABXRUJQVlA4IDQAAADQAgCdASoUAA0APzmGulOvKSWisAgB4CcJZwAAe/QAAP7uH739DxB9udT8d0q/lnkOhwAA"
-          priority
-        />
+    <section className="relative overflow-hidden bg-[#0a0a0a]">
+      {/* ── Desktop (lg+): absolute image on right, text at bottom ── */}
+      <div className="hidden lg:block">
+        <div className="absolute top-0 -right-[12%] bottom-0 w-[75%]">
+          <Image
+            src="/images/hero.webp"
+            alt="Nishchal Vekariya"
+            fill
+            sizes="75vw"
+            className="object-contain object-right-bottom"
+            placeholder="blur"
+            blurDataURL="data:image/webp;base64,UklGRkAAAABXRUJQVlA4IDQAAADQAgCdASoUAA0APzmGulOvKSWisAgB4CcJZwAAe/QAAP7uH739DxB9udT8d0q/lnkOhwAA"
+            priority
+          />
+        </div>
+        <div className="absolute inset-0" style={{ background: 'linear-gradient(to right, #0a0a0a 0%, #0a0a0a 30%, transparent 55%)' }} />
       </div>
 
-      {/* Gradient overlay — covers only the left 50% for text, avatar stays untouched */}
-      <div className="absolute inset-0" style={{ background: 'linear-gradient(to right, #0a0a0a 0%, #0a0a0a 30%, transparent 55%)' }} />
+      {/* ── Mobile (<lg): image on top, centered ── */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7, ease: [0.12, 0.23, 0.5, 1] }}
+        className="relative pt-20 lg:hidden"
+      >
+        <div className="relative mx-auto aspect-[4/3] w-full max-w-sm">
+          <Image
+            src="/images/hero.webp"
+            alt="Nishchal Vekariya"
+            fill
+            sizes="100vw"
+            className="object-contain object-bottom"
+            placeholder="blur"
+            blurDataURL="data:image/webp;base64,UklGRkAAAABXRUJQVlA4IDQAAADQAgCdASoUAA0APzmGulOvKSWisAgB4CcJZwAAe/QAAP7uH739DxB9udT8d0q/lnkOhwAA"
+            priority
+          />
+        </div>
+        <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[#0a0a0a] to-transparent" />
+      </motion.div>
 
-      {/* Content */}
-      <div className="relative flex min-h-screen flex-col justify-end pb-12 pt-24">
+      {/* ── Text content ── */}
+      <div className="relative pb-12 pt-6 lg:flex lg:min-h-screen lg:flex-col lg:justify-end lg:pt-24">
         <div className="mx-auto w-full max-w-[1200px] px-5 md:px-8">
           <motion.div initial="hidden" animate="visible" variants={stagger}>
             <motion.div variants={heroReveal} custom={0} className="mb-4 flex flex-wrap items-center gap-4">
