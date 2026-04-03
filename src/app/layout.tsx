@@ -19,12 +19,22 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: 'Nishchal Vekariya | Software Engineer & AI/ML Specialist',
   description:
-    'Portfolio of Nishchal Vekariya — building high-performance systems, AI-powered applications, and scalable full-stack products.',
-  keywords: ['software engineer', 'AI', 'ML', 'full-stack', 'portfolio', 'Nishchal Vekariya'],
+    'Portfolio of Nishchal Vekariya — SDE with 2+ years building scalable full-stack apps, AI/ML systems, and production APIs. Open to opportunities.',
+  keywords: ['software engineer', 'AI', 'ML', 'full-stack', 'portfolio', 'Nishchal Vekariya', 'SDE', 'Python', 'React', 'LLM'],
+  metadataBase: new URL('https://nishchal-vekariya.vercel.app'),
   openGraph: {
     title: 'Nishchal Vekariya | Software Engineer & AI/ML Specialist',
-    description: 'Building high-performance systems and AI-powered applications.',
+    description: 'SDE with 2+ years building scalable full-stack apps, AI/ML systems, and production APIs. Open to opportunities.',
     type: 'website',
+    siteName: 'Nishchal Vekariya',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Nishchal Vekariya | Software Engineer & AI/ML Specialist',
+    description: 'SDE with 2+ years building scalable full-stack apps, AI/ML systems, and production APIs.',
+  },
+  icons: {
+    icon: '/icon.svg',
   },
 };
 
