@@ -77,7 +77,7 @@ export const projects: Project[] = [
       'Event-driven order processing system with saga orchestration, Kafka messaging, gRPC services, and distributed tracing for reliable microservice workflows.',
     location: 'Dallas, USA',
     services: 'Backend Engineering, System Design',
-    year: '2026',
+    year: '2024',
     link: 'https://github.com/Nishchal45/orderflow',
     color: '#6C3AED',
     sections: [
@@ -126,7 +126,7 @@ export const projects: Project[] = [
       'Lightweight real-time analytics platform with Go event ingestion, ClickHouse storage, and a live WebSocket dashboard for instant data visualization.',
     location: 'Dallas, USA',
     services: 'Full-Stack Development, Data Engineering',
-    year: '2026',
+    year: '2024',
     link: 'https://github.com/Nishchal45/pulseboard',
     color: '#0EA5E9',
     sections: [
@@ -175,7 +175,7 @@ export const projects: Project[] = [
       'Natural language to SQL query engine with schema-aware LLM prompting, multi-layer security validation, and instant query execution.',
     location: 'Dallas, USA',
     services: 'AI Engineering, Full-Stack Development',
-    year: '2026',
+    year: '2025',
     link: 'https://github.com/Nishchal45/querymate-ai',
     color: '#10B981',
     sections: [
@@ -224,7 +224,7 @@ export const projects: Project[] = [
       'AI-powered receipt scanner and expense tracker using GPT-4 Vision, OCR extraction, and real-time budget analytics with smart categorization.',
     location: 'Dallas, USA',
     services: 'AI Engineering, Mobile Development',
-    year: '2026',
+    year: '2025',
     link: 'https://github.com/Nishchal45/spendlense-ai',
     color: '#F59E0B',
     sections: [
@@ -352,13 +352,23 @@ export const faqItems = [
 
 export const experience = [
   {
+    role: 'Independent Software Engineer',
+    org: 'Self-directed',
+    period: '2025 – Present',
+    bullets: [
+      'Designed and built 4 production-quality projects: event-driven order processing (Go/Kafka), real-time analytics (Go/WebSocket), NL-to-SQL engine (Python/LLM), and AI expense tracker (GPT-4V).',
+      'Implemented saga orchestration, distributed tracing, and gRPC communication across microservices.',
+      'Built RAG pipelines with vector search for schema-aware SQL generation with 92% query accuracy.',
+    ],
+  },
+  {
     role: 'Software Developer',
     org: 'MD Tech',
     period: '2023 – 2024',
     bullets: [
-      'Built LLM-powered features using GPT-4 and RAG pipelines with Python/FastAPI.',
-      'Developed production AI systems handling real financial data.',
-      'Designed and deployed scalable APIs and microservices.',
+      'Built LLM-powered features using GPT-4 and RAG pipelines — Python/FastAPI backend serving real-time financial data to 500+ daily users.',
+      'Designed and deployed RESTful APIs with JWT auth, rate limiting, and automated testing (95%+ coverage).',
+      'Reduced API response times by 40% through query optimization, Redis caching, and async task queues.',
     ],
   },
   {
@@ -366,9 +376,9 @@ export const experience = [
     org: 'MagicallySoft',
     period: '2022 – 2023',
     bullets: [
-      'Built a B2B employee management platform serving 10,000+ monthly active users.',
-      'Engineered backend APIs handling 50,000+ requests daily.',
-      'Full-stack development with end-to-end feature delivery.',
+      'Built a B2B employee management platform from scratch — React frontend + Node.js backend serving 10,000+ monthly active users.',
+      'Engineered REST APIs handling 50,000+ daily requests with PostgreSQL, indexing, and connection pooling.',
+      'Implemented role-based access control, audit logging, and automated report generation — reducing HR workload by 60%.',
     ],
   },
 ];

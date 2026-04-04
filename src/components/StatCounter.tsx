@@ -1,7 +1,8 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
-import { motion, useInView } from 'framer-motion';
+import { useEffect, useState } from 'react';
+import { motion, useAnimation, useInView } from 'framer-motion';
+import { useRef } from 'react';
 
 interface StatCounterProps {
   value: number;
@@ -12,38 +13,40 @@ interface StatCounterProps {
 
 export default function StatCounter({ value, suffix, label, index = 0 }: StatCounterProps) {
   const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, amount: 0.3 });
+  const isInView = useInView(ref, { once: true, amount: 0.1 });
   const [count, setCount] = useState(0);
+  const [hasAnimated, setHasAnimated] = useState(false);
 
+  // Start count-up when element enters viewport
   useEffect(() => {
-    if (!isInView) return;
-    if (value === 0) return;
+    if (!isInView || hasAnimated || value === 0) return;
+    setHasAnimated(true);
 
-    let start = 0;
-    const duration = 1800;
-    const step = 16;
-    const totalSteps = duration / step;
-    const increment = value / totalSteps;
+    const duration = 1500;
+    const startTime = performance.now();
 
-    const timer = setInterval(() => {
-      start += increment;
-      if (start >= value) {
-        setCount(value);
-        clearInterval(timer);
+    const animate = (now: number) => {
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      // Ease out cubic
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setCount(Math.floor(eased * value));
+
+      if (progress < 1) {
+        requestAnimationFrame(animate);
       } else {
-        setCount(Math.floor(start));
+        setCount(value);
       }
-    }, step);
+    };
 
-    return () => clearInterval(timer);
-  }, [isInView, value]);
+    requestAnimationFrame(animate);
+  }, [isInView, value, hasAnimated]);
 
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, y: 30, scale: 0.95 }}
-      whileInView={{ opacity: 1, y: 0, scale: 1 }}
-      viewport={{ once: true, amount: 0.3 }}
+      initial={{ opacity: 0, y: 20 }}
+      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
       transition={{
         duration: 0.5,
         delay: index * 0.12,

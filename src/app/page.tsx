@@ -99,6 +99,13 @@ function Hero() {
               >
                 Get in Touch
               </Link>
+              <a
+                href="/resume.pdf"
+                download
+                className="inline-flex items-center gap-2 rounded-[var(--radius-pill)] border border-white/20 bg-white/5 px-7 py-3 text-sm font-medium text-white backdrop-blur-sm transition-all duration-200 hover:bg-white/10"
+              >
+                Download Resume
+              </a>
             </motion.div>
 
           </motion.div>
@@ -339,87 +346,44 @@ const levelColors: Record<ProfLevel, string> = {
 
 const skillGroups = [
   {
-    title: 'Languages',
+    title: 'Languages & Frameworks',
     icon: Code2,
     color: '#6C3AED',
     skills: [
       { n: 'Python', l: 'Expert' as ProfLevel },
       { n: 'TypeScript', l: 'Expert' as ProfLevel },
-      { n: 'Go', l: 'Advanced' as ProfLevel },
-      { n: 'Java', l: 'Advanced' as ProfLevel },
-      { n: 'SQL', l: 'Advanced' as ProfLevel },
-      { n: 'C++', l: 'Intermediate' as ProfLevel },
-      { n: 'Rust', l: 'Beginner' as ProfLevel },
-    ],
-  },
-  {
-    title: 'Frontend',
-    icon: Code2,
-    color: '#0EA5E9',
-    skills: [
       { n: 'React / Next.js', l: 'Expert' as ProfLevel },
-      { n: 'Tailwind CSS', l: 'Expert' as ProfLevel },
-      { n: 'Framer Motion', l: 'Advanced' as ProfLevel },
-      { n: 'Redux / Zustand', l: 'Advanced' as ProfLevel },
-      { n: 'React Native', l: 'Intermediate' as ProfLevel },
-    ],
-  },
-  {
-    title: 'Backend & APIs',
-    icon: Cloud,
-    color: '#10B981',
-    skills: [
       { n: 'Node.js / Express', l: 'Expert' as ProfLevel },
-      { n: 'FastAPI / Django', l: 'Expert' as ProfLevel },
-      { n: 'REST / GraphQL / gRPC', l: 'Expert' as ProfLevel },
-      { n: 'WebSockets', l: 'Advanced' as ProfLevel },
-      { n: 'OAuth / JWT', l: 'Advanced' as ProfLevel },
+      { n: 'FastAPI', l: 'Advanced' as ProfLevel },
+      { n: 'Go', l: 'Advanced' as ProfLevel },
+      { n: 'SQL', l: 'Advanced' as ProfLevel },
+      { n: 'Java', l: 'Intermediate' as ProfLevel },
     ],
   },
   {
-    title: 'Databases',
-    icon: Cloud,
-    color: '#8B5CF6',
-    skills: [
-      { n: 'PostgreSQL', l: 'Expert' as ProfLevel },
-      { n: 'MongoDB', l: 'Advanced' as ProfLevel },
-      { n: 'Redis', l: 'Advanced' as ProfLevel },
-      { n: 'Vector DBs (Pinecone)', l: 'Advanced' as ProfLevel },
-      { n: 'ClickHouse', l: 'Intermediate' as ProfLevel },
-      { n: 'Elasticsearch', l: 'Beginner' as ProfLevel },
-    ],
-  },
-  {
-    title: 'AI & ML',
+    title: 'AI & Machine Learning',
     icon: Brain,
     color: '#F59E0B',
     skills: [
-      { n: 'LLMs / GPT-4 / Claude', l: 'Expert' as ProfLevel },
-      { n: 'RAG Pipelines', l: 'Expert' as ProfLevel },
+      { n: 'LLMs / GPT-4 / RAG', l: 'Expert' as ProfLevel },
       { n: 'Prompt Engineering', l: 'Expert' as ProfLevel },
       { n: 'LangChain', l: 'Advanced' as ProfLevel },
       { n: 'PyTorch', l: 'Advanced' as ProfLevel },
-      { n: 'NLP / NER', l: 'Advanced' as ProfLevel },
-      { n: 'Computer Vision', l: 'Advanced' as ProfLevel },
-      { n: 'Transformers / HF', l: 'Advanced' as ProfLevel },
-      { n: 'MLOps', l: 'Intermediate' as ProfLevel },
-      { n: 'RL (DQN/PPO)', l: 'Intermediate' as ProfLevel },
+      { n: 'NLP', l: 'Advanced' as ProfLevel },
+      { n: 'Computer Vision', l: 'Intermediate' as ProfLevel },
     ],
   },
   {
-    title: 'Quant Finance',
-    icon: Rocket,
-    color: '#EC4899',
+    title: 'Backend & Data',
+    icon: Cloud,
+    color: '#10B981',
     skills: [
-      { n: 'Technical Analysis', l: 'Expert' as ProfLevel },
-      { n: 'pandas / NumPy', l: 'Expert' as ProfLevel },
-      { n: 'Algo Trading', l: 'Advanced' as ProfLevel },
-      { n: 'Backtesting', l: 'Advanced' as ProfLevel },
-      { n: 'Time Series (ARIMA)', l: 'Advanced' as ProfLevel },
-      { n: 'Risk Mgmt / VaR', l: 'Advanced' as ProfLevel },
-      { n: 'Options / Greeks', l: 'Intermediate' as ProfLevel },
-      { n: 'FinRL', l: 'Intermediate' as ProfLevel },
-      { n: 'Market Microstructure', l: 'Beginner' as ProfLevel },
+      { n: 'PostgreSQL', l: 'Expert' as ProfLevel },
+      { n: 'REST / GraphQL / gRPC', l: 'Expert' as ProfLevel },
+      { n: 'Redis', l: 'Advanced' as ProfLevel },
+      { n: 'Kafka', l: 'Advanced' as ProfLevel },
+      { n: 'MongoDB', l: 'Advanced' as ProfLevel },
+      { n: 'Vector DBs', l: 'Advanced' as ProfLevel },
     ],
   },
   {
@@ -428,25 +392,24 @@ const skillGroups = [
     color: '#F97316',
     skills: [
       { n: 'Docker', l: 'Expert' as ProfLevel },
-      { n: 'Git / GitHub', l: 'Expert' as ProfLevel },
+      { n: 'Git / CI/CD', l: 'Expert' as ProfLevel },
       { n: 'AWS', l: 'Advanced' as ProfLevel },
-      { n: 'CI/CD', l: 'Advanced' as ProfLevel },
       { n: 'Linux', l: 'Advanced' as ProfLevel },
+      { n: 'Distributed Systems', l: 'Advanced' as ProfLevel },
       { n: 'Kubernetes', l: 'Intermediate' as ProfLevel },
-      { n: 'Terraform', l: 'Beginner' as ProfLevel },
     ],
   },
   {
-    title: 'Data & Infra',
+    title: 'Quant & Analytics',
     icon: Rocket,
-    color: '#14B8A6',
+    color: '#EC4899',
     skills: [
-      { n: 'Kafka', l: 'Advanced' as ProfLevel },
-      { n: 'Distributed Systems', l: 'Advanced' as ProfLevel },
-      { n: 'ETL Pipelines', l: 'Advanced' as ProfLevel },
-      { n: 'Grafana / Prometheus', l: 'Intermediate' as ProfLevel },
-      { n: 'Spark', l: 'Beginner' as ProfLevel },
-      { n: 'Airflow', l: 'Beginner' as ProfLevel },
+      { n: 'pandas / NumPy', l: 'Expert' as ProfLevel },
+      { n: 'Technical Analysis', l: 'Advanced' as ProfLevel },
+      { n: 'Algo Trading', l: 'Advanced' as ProfLevel },
+      { n: 'Backtesting', l: 'Advanced' as ProfLevel },
+      { n: 'Time Series', l: 'Advanced' as ProfLevel },
+      { n: 'Risk Management', l: 'Intermediate' as ProfLevel },
     ],
   },
 ];
@@ -486,7 +449,7 @@ function SkillsSection() {
           </motion.p>
 
           {/* Compact 2x4 grid */}
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {skillGroups.map((group, gi) => (
               <motion.div
                 key={group.title}
@@ -516,7 +479,7 @@ function SkillsSection() {
 
           {/* Legend */}
           <motion.div variants={fadeUp} custom={11} className="mt-6 flex flex-wrap items-center justify-center gap-5">
-            {(['Expert', 'Advanced', 'Intermediate', 'Beginner'] as ProfLevel[]).map((level) => (
+            {(['Expert', 'Advanced', 'Intermediate'] as ProfLevel[]).map((level) => (
               <div key={level} className="flex items-center gap-1.5">
                 <span className="h-2 w-2 rounded-full" style={{ backgroundColor: levelColors[level] }} />
                 <span className="text-[11px] font-medium text-[var(--color-text-muted)]">{level}</span>
